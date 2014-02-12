@@ -1,0 +1,31 @@
+#!/usr/bin/env lua
+
+local function printHelp(type)
+	print("AwesomeWM Package Tool 0.1-alpha\n")
+
+	if type == "install" then
+		print("Install:")
+		print("You can install all packages from the AwesomeWM Package repository.")
+		print("http://www.awesome-pt.org/)\n")
+		print("Run: awesome-pt install package-name")
+	else
+		print("Commands:")
+		print("  install", "– install a new package")
+		print("  help   ", "– display the command help (e.g. help install)")
+	end
+end
+
+if not pcall(function()
+	local action = {
+		["install"] = function(a)
+			local install = require "../lib/install"
+			install.main(a)
+		end,
+		["help"] = function(a)
+			printHelp(a[2])
+		end,
+	}
+	action[arg[1]](arg)
+end) then
+	printHelp()
+end
