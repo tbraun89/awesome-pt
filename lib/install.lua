@@ -1,5 +1,7 @@
 local install = {}
 
+local config = require "lib/config"
+
 function install.main(arg)
 	if #arg > 1 then
 		print("TODO // implement installtion")

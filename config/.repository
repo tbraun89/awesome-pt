@@ -1,0 +1,14 @@
+return {
+-- Table: {1}
+{
+   ["test0.1-alpha"]={2},
+   ["test-dep0.1-alpha"]={3},
+},
+-- Table: {2}
+{
+   "test-dep0.1-alpha",
+},
+-- Table: {3}
+{
+},
+}
