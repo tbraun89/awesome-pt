@@ -1,9 +1,5 @@
 #!/usr/bin/env lua
 
-local install = require "lib/install"
-local update  = require "lib/update"
-local list    = require "lib/list"
-
 local function printHelp(type)
 	print("AwesomeWM Package Tool 0.1-alpha\n")
 
@@ -47,12 +43,15 @@ end
 if not pcall(function()
 	local action = {
 		["install"] = function(arg)
+			local install = require("lib/install")
 			install.main(arg)
 		end,
 		["update"] = function(arg)
+			local update = require("lib/update")
 			update.main(arg)
 		end,
 		["list"] = function(arg)
+			local list = require("lib/list")
 			list.main(arg)
 		end,
 		["help"] = function(arg)
