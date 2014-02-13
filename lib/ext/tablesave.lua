@@ -35,7 +35,7 @@ do
 	--// The Save Function
 	function table.save(  tbl,filename )
 		local charS,charE = "   ","\n"
-		local file,err = io.open( filename, "wb" )
+		local file,err = io.open( filename, "w+" )
 		if err then return err end
 
 		-- initiate variables for save procedure
