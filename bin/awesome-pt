@@ -2,19 +2,44 @@
 
 local install = require "lib/install"
 local update  = require "lib/update"
+local list    = require "lib/list"
 
 local function printHelp(type)
 	print("AwesomeWM Package Tool 0.1-alpha\n")
 
 	if type == "install" then
 		print("Install:")
-		print("You can install all packages from the AwesomeWM Package repository.")
-		print("http://www.awesome-pt.org/)\n")
-		print("Run: awesome-pt install package-name")
+		print("  You can install all packages from the AwesomeWM Package repository.")
+		print("  http://www.awesome-pt.org/)\n")
+		print("  Run \"awesome-pt install package-name\" to install the lates version")
+		print("  of a package. It is recommended to run the update command if the")
+		print("  remote version of the package has changed. If there is an older")
+		print("  version of the package installed the command will do an update to")
+		print("  the current version of the package.\n")
+		print("  Run \"awesome-pt install package-name 0.3.1\" to intsall the version")
+		print("  0.3.1 of the package. If there is an other version of the package")
+		print("  installed the command will do an upgrade/downgrade to the selected")
+		print("  version.")
+	elseif type == "update" then
+		print("Update:")
+		print("  The update command downloads all remote source files listed in the")
+		print("  \"config/source\" file and creates the local repository with the")
+		print("  current version of all packages.\n")
+		print("  It is recommended to run this command before you install a new package")
+		print("  to get the latest version.\n")
+		print("  You can add your own remote resources to the \"config/source\" file.")
+	elseif type == "list" then
+		print("List:")
+		print("  Run \"awesome-pt list\" to list all installed packages.\n")
+		print("  Run \"awesome-pt list package-name\" to list all available versions")
+		print("  of the package in the local repository. If there are new versions in")
+		print("  the remote repository available run the update command if you don't")
+		print("  see them listed.")
 	else
 		print("Commands:")
 		print("  install", "– install a new package")
 		print("  update ", "– update the package information")
+		print("  list   ", "– list all available versions of the package")
 		print("  help   ", "– display the command help (e.g. help install)")
 	end
 end
@@ -26,6 +51,9 @@ if not pcall(function()
 		end,
 		["update"] = function(arg)
 			update.main(arg)
+		end,
+		["list"] = function(arg)
+			list.main(arg)
 		end,
 		["help"] = function(arg)
 			printHelp(arg[2])

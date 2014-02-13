@@ -9,7 +9,7 @@ local tsave  = require "lib/ext/tablesave"
 function update.main(arg)
 	print("AwesomeWM Package Tool 0.1-alpha\n")
 	
-	graph = {}
+	local graph = {}
 	
 	print("Updating sources:")
 	for line in config.remotelist() do
@@ -18,23 +18,35 @@ function update.main(arg)
 			url    = line,
 			sink   = ltn12.sink.table(result)
 		}
-		
+
 		if hdr then
 			print("  ✔ " .. line)
 			result = cjson.decode(table.concat(result))
 
 			for i = 1, #result do
-				deps = {}
+				local deps = {}
+				
 				for j = 1, #result[i]["dep"] do
-					table.insert(deps, result[i]["dep"][j][1] .. result[i]["dep"][j][2])
+					local deplist = {}
+					
+					table.insert(deplist, result[i]["dep"][j][1])
+					table.insert(deplist, result[i]["dep"][j][2])
+					table.insert(deps,    deplist)
 				end
-				packagekey = result[i]["name"] .. "-" .. result[i]["version"]
-				packagedata = {}
+				
+				local packageversion = {}
+				local packagedata    = {}
 				
 				packagedata["file"] = result[i]["package"]
 				packagedata["deps"] = deps
 				
-				graph[packagekey] = packagedata
+				packageversion[result[i]["version"]] = packagedata
+				
+				if not graph[result[i]["name"]] then
+					graph[result[i]["name"]] = {}
+				end
+				
+				table.insert(graph[result[i]["name"]], packageversion)
 			end
 		else
 			print("  ✘ " .. line)
