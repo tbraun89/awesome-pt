@@ -28,7 +28,13 @@ function update.main(arg)
 				for j = 1, #result[i]["dep"] do
 					table.insert(deps, result[i]["dep"][j][1] .. result[i]["dep"][j][2])
 				end
-				graph[result[i]["name"] .. result[i]["version"]] = deps
+				packagekey = result[i]["name"] .. "-" .. result[i]["version"]
+				packagedata = {}
+				
+				packagedata["file"] = result[i]["package"]
+				packagedata["deps"] = deps
+				
+				graph[packagekey] = packagedata
 			end
 		else
 			print("  ✘ " .. line)
