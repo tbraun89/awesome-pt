@@ -189,19 +189,23 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the left
     local left_layout = wibox.layout.fixed.horizontal()
+    local ext_left = wibox.layout.fixed.horizontal()
     left_layout:add(mylauncher)
     left_layout:add(mytaglist[s])
     left_layout:add(mypromptbox[s])
-    rcext_set_left_layout(left_layout)
+    left_layout:add(ext_left)
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
+    local ext_right = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
+    right_layout:add(ext_right)
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
-    rcext_set_right_layout(right_layout)
-
+    
 	-- Load all widgets from awesome-pt
+	rcext_set_left_layout(ext_left)
+	rcext_set_right_layout(ext_right)
 	load_widgets()
 
     -- Now bring it all together (with the tasklist in the middle)
