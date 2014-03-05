@@ -14,9 +14,6 @@ local menubar = require("menubar")
 -- Load the awesome-pt extesions
 require("lib/rcext")
 
--- Load Debian menu entries
---require("debian.menu")
-
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
