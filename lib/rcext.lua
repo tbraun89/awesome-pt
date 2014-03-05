@@ -18,7 +18,7 @@ end
 
 -- TODO implement widget path more dynamically
 function load_widgets()
-	local widgetsdir = lfs.currentdir() .. "/.config/awesome/widgets/"
+	local widgetsdir = lfs.currentdir() .. "/widgets/"
 
 	for file in lfs.dir(widgetsdir) do
 		if file ~= "." and file ~= ".." then
