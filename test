@@ -2,3 +2,5 @@
 
 Xephyr -screen 640x480 :1 &
 DISPLAY=:1.0 awesome -c ./rc.lua
+#DISPLAY=:1.0 awesome -c ~/.config/awesome/rc.lua
+
