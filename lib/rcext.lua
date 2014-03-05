@@ -16,7 +16,6 @@ function rcext_get_right_layout()
 	return layout_right
 end
 
--- TODO implement widget path more dynamically
 function load_widgets()
 	local widgetsdir = lfs.currentdir() .. "/widgets/"
 
