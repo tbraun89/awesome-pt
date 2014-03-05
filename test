@@ -1,0 +1,4 @@
+#!/bin/bash
+
+Xephyr -screen 640x480 :1 &
+DISPLAY=:1 awesome -c ./rc.lua
